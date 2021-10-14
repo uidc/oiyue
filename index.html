@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>do</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/uidc/pt/bc/de/DPlayer.min.css">
+	<meta name="referrer" content="no-referrer"/>
+</head>
+<style type="text/css">body,html,.content{background-color:black;padding: 0;margin: 0;width:100%;height:100%;color:#999;position:absolute;}</style>
+<body style="overflow-y:hidden;">
+<div class="content dplayer dplayer-no-danmaku" id="ZsPlay"></div>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/uidc/pt/bc/de/hls.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/uidc/pt/bc/de/DPlayer.min.js" charset="utf-8"></script>
+<script>
+var isPhone = navigator.userAgent.match(/iPad|iPhone|Android|Linux|iPod/i) != null;
+player('ZsPlay', '100%');
+
+
+function _get(name){
+     var result = location.search.match(new RegExp("[\?\&]" + name+ "=([^\&]+)","i"));
+     if(result == null || result.length < 1){
+         return "";
+     }
+     return decodeURIComponent(result[1])
+}
+function player(id, w) {
+  if (isPhone) {
+    var htm = '<video src="'+ _get('url') +'" controls="controls" poster="https://pic.cytcm.com/logo.gif" autoplay="autoplay" width="' + w + '" height="100%"></video>';
+    document.getElementById(id).innerHTML = htm;
+  } else {
+    var dp = new DPlayer({
+      container: document.getElementById('ZsPlay'),
+      autoplay: true,
+	  screenshot: true,
+      video: {
+        url: _get('url'),
+        type: 'hls',
+      }
+    });
+  }
+}
+</script>
+<script>
+    document.onkeydown = function () {
+        if (window.event && window.event.keyCode == 123) {
+            
+            event.keyCode = 0;
+            event.returnValue = false;
+        }
+        if (window.event && window.event.keyCode == 13) {
+            window.event.keyCode = 505;
+        }
+        if (window.event && window.event.keyCode == 8) {
+            alert(str + "\n请使用Del键进行字符的删除操作！");
+            window.event.returnValue = false;
+        }
+    }
+</script>
+
+
+<script>
+    document.oncontextmenu = function (event) {
+        if (window.event) {
+            event = window.event;
+        }
+        try {
+            var the = event.srcElement;
+            if (!((the.tagName == "INPUT" && the.type.toLowerCase() == "text") || the.tagName == "TEXTAREA")) {
+                return false;
+            }
+            return true;
+        } catch (e) {
+            return false;
+        }
+    }
+ 
+
+ </script>
+											
+</body>
+</html>
