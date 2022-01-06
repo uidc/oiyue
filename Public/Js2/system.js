@@ -1,6 +1,6 @@
 ﻿/* Version 3.6122
 ** QQ:271513820 
-** Up:2018.not ad 02.08*/
+** Up:2012.not ad 12.10*/
 var feifei = {
 //start
 'browser':{//浏览器信息
